@@ -13,6 +13,7 @@ Usage
 ### Simple standard array usage
 
 ```php
+<?php
 // Create our Mongo instance, setting it up however you like
 $mongo = new \Mongo();
 
@@ -49,4 +50,4 @@ $this->assertEquals(2, count($mongoArray));
 
 // Delete the Mongo database
 $mongoArray->delete();  
-``` 
+```
