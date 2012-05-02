@@ -122,6 +122,27 @@ class MongoArray implements \ArrayAccess, \Countable {
             $this->update($offset, $value);              
         }
     }
+    
+    
+    /**
+     * Shift an element off the beginning of array
+     * 
+     * Identical in functionalty to array_shift()
+     * @see http://php.net/manual/en/function.array-shift.php
+     * 
+     * @return mixed
+     */
+    public function shift() {        
+        $item = $this->offsetGet(0);
+        
+        $this->itemsCollection()->update(array(), array('$pop' => array(
+            self::ITEMS_OBJECT_NAME => -1
+        )));
+        
+        $this->decrementLength();
+        
+        return $item;
+    }
 
     
     /**
@@ -136,7 +157,7 @@ class MongoArray implements \ArrayAccess, \Countable {
     public function offsetUnset($offset) {                
         $this->itemsCollection()->update(array(), array('$unset' => array(
             self::ITEMS_OBJECT_NAME.'.'.$offset => 1
-        )));
+        )));   
         
         $this->decrementLength();
     }
@@ -149,10 +170,12 @@ class MongoArray implements \ArrayAccess, \Countable {
     }
     
     private function decrementLength() {
-        $this->itemsCollection()->update(array(), array('$inc' => array(
-            self::ITEMS_LENGTH_NAME => -1
-        )        
-        ));     
+        if ($this->count() > 0) {
+            $this->itemsCollection()->update(array(), array('$inc' => array(
+                self::ITEMS_LENGTH_NAME => -1
+            )        
+            ));            
+        }     
     }   
     
     
@@ -212,7 +235,7 @@ class MongoArray implements \ArrayAccess, \Countable {
      *
      * @return \MongoCollection
      */
-    private function itemsCollection() {        
+    public function itemsCollection() {        
         if (is_null($this->itemsCollection)) {
             $this->itemsCollection = $this->mongoDB()->selectCollection(self::ITEMS_COLLECTION_NAME);
             
