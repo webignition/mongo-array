@@ -1,11 +1,13 @@
 Mongo Array
 ===========
 
-An array-like data structure backed by Mongo. Useful for handling large lists of relatively simple data. 
+An array-like data structure backed by Mongo. Useful for when dealing with very 
+large data sets such that the use of an in-memory regular array fails due to 
+memory constraints.
 
-You use it like a regular array, it persists values in a Mongo database as if by magic.
+You use it like a regular array, it persists values in a Mongo database as if 
+by magic.
 
-Useful for when dealing with very large data sets such that the use of an in-memory regular array fails due to memory constraints.
 
 Usage
 -----
