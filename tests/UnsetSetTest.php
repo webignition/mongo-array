@@ -6,7 +6,7 @@ require_once(__DIR__.'/../lib/bootstrap.php');
  * Check that unset() removes an item from the array
  * 
  */
-class UnsetTest extends AbstractMongoArrayTest {
+class UnsetSetTest extends AbstractMongoArrayTest {
 
     public function testUnsettingFirstItemRemovesItAndShiftsUpRemainingItems() {        
         $this->mongoArray->delete();
