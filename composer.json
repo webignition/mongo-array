@@ -1,0 +1,17 @@
+{
+    "name": "webignition/mongo-array",
+    "description": "A data structure behaving like an array backed by Mongo",
+    "keywords": ["array", "mongo"],
+    "homepage": "https://github.com/webignition/mongo-array",
+    "type": "library",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Jon Cram",
+            "email": "jon@webignition.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
