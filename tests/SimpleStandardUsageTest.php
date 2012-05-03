@@ -10,11 +10,11 @@ class SimpleStandardUsageTest extends PHPUnit_Framework_TestCase {
         
         // Create configuration for MongoArray
         $configuration = new \webignition\MongoArray\Configuration();
-        $configuration->intitialise('demoDatabase');
+        $configuration->initialise('demoDatabase');
 
         // Create a new MongoArray, we'll use this just like a regular array
         $mongoArray = new \webignition\MongoArray\MongoArray;
-        $mongoArray->intitialise($mongo, $configuration);
+        $mongoArray->initialise($mongo, $configuration);
         
         // Let's start from scratch by deleting the (entire!) test Mongo database
         $mongoArray->delete(); 

@@ -40,7 +40,7 @@ class MongoArray implements \ArrayAccess, \Countable {
      * 
      * @param \Mongo $mongo 
      */
-    public function intitialise(\Mongo $mongo, \webignition\MongoArray\Configuration $configuration) {
+    public function initialise(\Mongo $mongo, \webignition\MongoArray\Configuration $configuration) {
         $this->mongo = $mongo;
         $this->configuration = $configuration;
     }

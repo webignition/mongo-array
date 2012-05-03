@@ -17,7 +17,7 @@ class Configuration  {
      *
      * @param string $databaseName 
      */
-    public function intitialise($databaseName) {
+    public function initialise($databaseName) {
         $this->setDatabaseName($databaseName);
     }
     

@@ -28,12 +28,12 @@ abstract class AbstractMongoArrayTest extends PHPUnit_Framework_TestCase {
 
     protected function setUp() {        
         $this->configuration = new \webignition\MongoArray\Configuration();
-        $this->configuration->intitialise(self::CONFIGURATION_DATABASE_NAME);        
+        $this->configuration->initialise(self::CONFIGURATION_DATABASE_NAME);        
 
         $this->mongo = new \Mongo();
 
         $this->mongoArray = new \webignition\MongoArray\MongoArray;
-        $this->mongoArray->intitialise($this->mongo, $this->configuration);
+        $this->mongoArray->initialise($this->mongo, $this->configuration);
     }    
     
     protected function tearDown() {
