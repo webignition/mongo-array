@@ -219,10 +219,6 @@ class MongoArray implements \ArrayAccess, \Countable {
      * @return int
      */
     public function count() {        
-        if (!$this->hasItemsCollection()) {
-            $this->initialiseItems();
-        }
-        
         $lengthResult = $this->itemsCollection()->findOne(array(), array(
             self::ITEMS_LENGTH_NAME
         ));
@@ -248,16 +244,7 @@ class MongoArray implements \ArrayAccess, \Countable {
         }
         
         return $this->itemsCollection;
-    }
-    
-    /**
-     *
-     * @return boolean
-     */
-    private function hasItemsCollection() {
-        return $this->itemsCollection()->count() > 0;
-    }
-    
+    }    
     
     /**
      *
