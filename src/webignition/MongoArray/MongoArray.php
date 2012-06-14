@@ -2,7 +2,7 @@
 
 namespace webignition\MongoArray;
 
-class MongoArray implements \ArrayAccess, \Countable {
+class MongoArray implements \ArrayAccess, \Countable, \Iterator {
     
     const ITEMS_COLLECTION_NAME = 'items';
     const ITEMS_OBJECT_NAME = 'a';
@@ -32,7 +32,13 @@ class MongoArray implements \ArrayAccess, \Countable {
      *
      * @var \MongoCollection
      */
-    private $itemsCollection = null;    
+    private $itemsCollection = null;  
+    
+    /**     
+     * 
+     * @var int
+     */
+    private $iteratorPosition = 0;
     
     /**
      * Initialise this MongoArray, passing in your Mongo object that has been 
@@ -43,6 +49,39 @@ class MongoArray implements \ArrayAccess, \Countable {
     public function initialise(\Mongo $mongo, \webignition\MongoArray\Configuration $configuration) {
         $this->mongo = $mongo;
         $this->configuration = $configuration;
+        $this->rewind();
+    }
+    
+    /**
+     *
+     * @return mixed
+     */
+    public function current() {
+        return $this->offsetGet($this->iteratorPosition);
+    }
+    
+    /**
+     *
+     * @return scalar
+     */
+    public function key() {
+        return $this->iteratorPosition;
+    }    
+    
+    public function next() {
+        ++$this->iteratorPosition;
+    }
+    
+    public function rewind() {
+        $this->iteratorPosition = 0;
+    }
+    
+    /**
+     *
+     * @return boolean
+     */
+    public function valid() {
+        return $this->offsetExists($this->iteratorPosition);
     }
     
     
